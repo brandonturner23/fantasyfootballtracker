@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fantasy Companion</title>
+<link rel="stylesheet" href="/static/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">🏈 <span id="leagueName">Fantasy Companion</span></div>
+  <div class="controls">
+    <label class="week">Week <select id="weekSelect"></select></label>
+    <button id="refreshBtn" class="ghost" title="Refresh data">↻ Refresh</button>
+  </div>
+</header>
+<div id="demoBanner" class="banner" hidden>
+  Demo mode: these are made-up players. Add your Yahoo app keys to <code>.env</code> to connect your real league (see README).
+</div>
+
+<section id="connect" class="connect" hidden>
+  <h1>Connect your Yahoo league</h1>
+  <ol>
+    <li><a id="yahooLink" class="button" target="_blank" rel="noopener">Sign in with Yahoo</a></li>
+    <li id="codeStep">Paste the code Yahoo shows you:
+      <form id="codeForm"><input id="codeInput" placeholder="Authorization code" autocomplete="off"><button>Connect</button></form>
+    </li>
+  </ol>
+  <p id="connectError" class="error"></p>
+</section>
+
+<nav id="tabs" class="tabs" hidden>
+  <button data-tab="overview" class="active">Overview</button>
+  <button data-tab="lineup">Lineup</button>
+  <button data-tab="players">My players</button>
+  <button data-tab="trends">Trends</button>
+  <button data-tab="trades">Trades &amp; waivers</button>
+  <button data-tab="byes">Bye planner</button>
+  <button data-tab="alerts">Alerts</button>
+</nav>
+
+<main id="main" hidden>
+  <section data-panel="overview" class="panel active">
+    <div class="tiles" id="tiles"></div>
+    <div class="grid two">
+      <div class="card"><h2>This week's lineup check</h2><ul id="ovNotes" class="notes"></ul>
+        <button class="link" data-goto="lineup">Open lineup →</button></div>
+      <div class="card"><h2>Latest alerts</h2><ul id="ovAlerts" class="alerts"></ul>
+        <button class="link" data-goto="alerts">All alerts →</button></div>
+    </div>
+    <div class="card"><h2>Points by week</h2>
+      <div class="chart"><canvas id="ovChart" aria-label="Weekly points chart"></canvas></div></div>
+    <div class="grid two">
+      <div class="card"><h2>Top waiver targets</h2><div id="ovWaivers"></div></div>
+      <div class="card"><h2>Standings</h2><div id="standings"></div></div>
+    </div>
+  </section>
+
+  <section data-panel="lineup" class="panel">
+    <div class="grid two">
+      <div class="card">
+        <div class="card-head"><h2>Recommended lineup</h2>
+          <button id="applyBtn">Apply to Yahoo</button></div>
+        <p class="sub" id="lineupSummary"></p>
+        <table class="table" id="lineupTable"></table>
+      </div>
+      <div>
+        <div class="card"><h2>What to change</h2><ul id="lineupNotes" class="notes"></ul></div>
+        <div class="card"><h2>Game-day timeline</h2>
+          <p class="sub">Kickoff times decide when players lock. The latest kickoff sits in FLEX so you can still pivot.</p>
+          <div id="timeline"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-panel="players" class="panel">
+    <div class="card"><h2>Player research</h2>
+      <p class="sub">Click a player for the full breakdown, outlook and weekly chart.</p>
+      <div class="scroll"><table class="table" id="playersTable"></table></div></div>
+  </section>
+
+  <section data-panel="trends" class="panel">
+    <div class="card"><h2>Your points vs opponent, by week</h2>
+      <div class="chart"><canvas id="trendChart"></canvas></div></div>
+    <div class="grid two">
+      <div class="card"><h2>Where your points come from</h2>
+        <div class="chart"><canvas id="posChart"></canvas></div></div>
+      <div class="card"><h2>Points left on the bench</h2>
+        <p class="sub">Best possible lineup in hindsight minus what you started.</p>
+        <div class="chart"><canvas id="benchChart"></canvas></div></div>
+    </div>
+    <div class="card"><h2>Player form: weekly points</h2>
+      <p class="sub">Your current starters. Click legend items to show or hide players.</p>
+      <div class="chart tall"><canvas id="playerTrendChart"></canvas></div></div>
+  </section>
+
+  <section data-panel="trades" class="panel">
+    <div class="card"><h2>Roster strength vs league</h2>
+      <p class="sub">Your starters' weekly value at each position compared with the league average.</p>
+      <div id="needs" class="needs"></div></div>
+    <div class="card"><h2>Trade ideas</h2><div id="proposals" class="cards"></div></div>
+    <div class="grid two">
+      <div class="card"><h2>Buy low (other teams)</h2><div id="buyLow"></div></div>
+      <div class="card"><h2>Sell high (your team)</h2><div id="sellHigh"></div></div>
+    </div>
+    <div class="card"><h2>Waiver wire</h2><div class="scroll"><table class="table" id="waiverTable"></table></div></div>
+    <div class="card"><h2>Watchlist</h2><p class="sub">You get a notification when a watched player's status or owner changes.</p>
+      <div id="watchlist"></div></div>
+  </section>
+
+  <section data-panel="byes" class="panel">
+    <div class="card"><h2>Bye-week planner</h2>
+      <p class="sub">Who you lose each week, and whether you can still field a full lineup.</p>
+      <div id="byeGrid" class="bye-grid"></div></div>
+  </section>
+
+  <section data-panel="alerts" class="panel">
+    <div class="card">
+      <div class="card-head"><h2>Alerts</h2>
+        <div><button id="checkBtn">Run check now</button> <button id="testNotifyBtn" class="ghost">Send test notification</button></div></div>
+      <p class="sub" id="channelInfo"></p>
+      <ul id="alertList" class="alerts"></ul>
+    </div>
+    <div class="card" id="leagueCard" hidden><h2>League</h2>
+      <select id="leagueSelect"></select> <button id="logoutBtn" class="ghost">Disconnect Yahoo</button></div>
+  </section>
+</main>
+
+<dialog id="playerDialog">
+  <form method="dialog"><button class="close" aria-label="Close">✕</button></form>
+  <div id="playerBody"></div>
+  <div class="chart"><canvas id="playerChart"></canvas></div>
+</dialog>
+<div id="toast" class="toast" hidden></div>
+<div id="loading" class="loading">Crunching the numbers…</div>
+<script src="/static/app.js"></script>
+</body>
+</html>
