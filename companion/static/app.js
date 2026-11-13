@@ -124,12 +124,13 @@ function alertItems(list) {
 /* --------------------------------------------------------------- charts */
 function baseOptions(extra = {}) {
   const grid = css("--grid"), muted = css("--muted"), ink = css("--ink-2");
+  Chart.defaults.font.family = "Inter, system-ui, sans-serif";
   return {
     responsive: true, maintainAspectRatio: false, animation: false,
     interaction: { mode: "index", intersect: false },
     plugins: {
       legend: { labels: { color: ink, usePointStyle: true, boxWidth: 8, boxHeight: 8 } },
-      tooltip: { backgroundColor: css("--surface"), titleColor: css("--ink"), bodyColor: ink, borderColor: css("--axis"), borderWidth: 1, padding: 10, usePointStyle: true },
+      tooltip: { backgroundColor: css("--surface-3"), titleColor: css("--ink"), bodyColor: ink, borderColor: css("--axis"), borderWidth: 1, padding: 10, usePointStyle: true },
     },
     scales: {
       x: { grid: { display: false }, ticks: { color: muted }, border: { color: css("--axis") } },
@@ -337,6 +338,5 @@ $("#testNotifyBtn").onclick = async () => {
 };
 $("#leagueSelect").onchange = async (e) => { await api("/api/league", { method: "POST", body: JSON.stringify({ league_key: e.target.value }) }); WEEK = null; load(true); };
 $("#logoutBtn").onclick = async () => { await api("/api/auth/logout", { method: "POST" }); location.reload(); };
-window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => DATA && render());
 try { const t = localStorage.getItem("tab"); if (t) showTab(t); } catch (_) {}
 boot();

@@ -1,15 +1,20 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fantasy Companion</title>
+<meta name="theme-color" content="#0a0c12">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 </head>
 <body>
 <header class="topbar">
-  <div class="brand">🏈 <span id="leagueName">Fantasy Companion</span></div>
+  <div class="brand"><span class="logo">🏈</span><span id="leagueName">Fantasy Companion</span></div>
   <div class="controls">
     <label class="week">Week <select id="weekSelect"></select></label>
     <button id="refreshBtn" class="ghost" title="Refresh data">↻ Refresh</button>
