@@ -20,17 +20,27 @@
   --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
   --good: #0ca30c; --good-text: #2fd35a; --warning: #fab219; --serious: #ec835a; --critical: #e5484d;
   --radius: 16px;
+  --radius-sm: 10px;
+  --font: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-head: var(--font);
+  --head-transform: none;
+  --head-spacing: -0.01em;
+  --value-weight: 800;
+  --header-bg: rgba(10, 12, 18, 0.72);
+  --page-bg:
+    radial-gradient(1100px 520px at 8% -10%, rgba(57, 135, 229, 0.16), transparent 60%),
+    radial-gradient(900px 480px at 100% 0%, rgba(144, 133, 233, 0.12), transparent 60%),
+    var(--page);
+  --card-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 40%), var(--surface);
+  --glow: none;
   --shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 12px 32px -16px rgba(0, 0, 0, 0.6);
 }
 * { box-sizing: border-box; }
 html { background: var(--page); }
 body {
   margin: 0; color: var(--ink); min-height: 100vh;
-  font: 15px/1.5 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
-  background:
-    radial-gradient(1100px 520px at 8% -10%, rgba(57, 135, 229, 0.16), transparent 60%),
-    radial-gradient(900px 480px at 100% 0%, rgba(144, 133, 233, 0.12), transparent 60%),
-    var(--page);
+  font: 15px/1.5 var(--font);
+  background: var(--page-bg);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
 }
@@ -40,7 +50,7 @@ a { color: var(--accent); }
 
 /* ---------- controls ---------- */
 button, .button {
-  font: inherit; font-weight: 600; border: 0; border-radius: 10px; padding: 9px 16px;
+  font: inherit; font-weight: 600; border: 0; border-radius: var(--radius-sm); padding: 9px 16px;
   background: var(--accent-grad); color: var(--accent-ink); cursor: pointer; text-decoration: none;
   display: inline-block; box-shadow: 0 6px 18px -8px rgba(57, 135, 229, 0.7);
   transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
@@ -61,10 +71,10 @@ select:focus, input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px r
 .topbar {
   display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
   padding: 14px 28px; position: sticky; top: 0; z-index: 10;
-  background: rgba(10, 12, 18, 0.72); backdrop-filter: blur(16px) saturate(1.4);
+  background: var(--header-bg); backdrop-filter: blur(16px) saturate(1.4);
   -webkit-backdrop-filter: blur(16px) saturate(1.4); border-bottom: 1px solid var(--border);
 }
-.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 16px; letter-spacing: -0.01em; min-width: 0; }
+.brand { font-family: var(--font-head); text-transform: var(--head-transform); display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 16px; letter-spacing: -0.01em; min-width: 0; }
 .brand #leagueName { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .logo {
   display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; flex: none;
@@ -95,11 +105,11 @@ main { padding: 20px 28px 72px; max-width: 1396px; margin: 0 auto; }
 
 /* ---------- cards ---------- */
 .card {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 40%), var(--surface);
+  background: var(--card-bg);
   border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; margin-bottom: 18px;
   min-width: 0; box-shadow: var(--shadow);
 }
-.card h2 { font-size: 15px; font-weight: 600; margin: 0 0 12px; letter-spacing: -0.01em; }
+.card h2 { font-family: var(--font-head); font-size: 15px; font-weight: 600; margin: 0 0 12px; letter-spacing: var(--head-spacing); text-transform: var(--head-transform); }
 .card h3 { font-size: 13px; margin: 18px 0 8px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
 .card-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
 .card-head h2 { margin: 0; }
@@ -121,7 +131,7 @@ main { padding: 20px 28px 72px; max-width: 1396px; margin: 0 auto; }
 .tile:nth-child(3)::before { background: linear-gradient(90deg, #d95926, #d55181); }
 .tile:nth-child(4)::before { background: linear-gradient(90deg, #9085e9, #d55181); }
 .tile .label { color: var(--muted); font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; }
-.tile .value { font-size: 32px; font-weight: 800; margin-top: 6px; letter-spacing: -0.03em; line-height: 1.1; }
+.tile .value { font-family: var(--font-head); font-size: 32px; font-weight: var(--value-weight); margin-top: 6px; letter-spacing: -0.03em; line-height: 1.1; text-shadow: var(--glow); }
 .tile .foot { color: var(--ink-2); font-size: 13px; margin-top: 6px; }
 .up { color: var(--good-text); }
 .down { color: var(--critical); }

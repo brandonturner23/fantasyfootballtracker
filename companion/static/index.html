@@ -10,12 +10,26 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" href="/static/themes.css">
+<script>
+  /* apply the saved style before first paint */
+  (function () {
+    var s = new URLSearchParams(location.search).get("style");
+    try { s = s || localStorage.getItem("style"); } catch (e) {}
+    if (s) document.documentElement.setAttribute("data-style", s);
+  })();
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 </head>
 <body>
 <header class="topbar">
   <div class="brand"><span class="logo">🏈</span><span id="leagueName">Fantasy Companion</span></div>
   <div class="controls">
+    <label class="week">Style <select id="styleSelect" aria-label="App style">
+      <option value="midnight">Midnight</option><option value="turf">Turf</option>
+      <option value="primetime">Primetime</option><option value="scoreboard">Scoreboard</option>
+      <option value="aurora">Aurora</option><option value="stealth">Stealth</option>
+    </select></label>
     <label class="week">Week <select id="weekSelect"></select></label>
     <button id="refreshBtn" class="ghost" title="Refresh data">↻ Refresh</button>
   </div>

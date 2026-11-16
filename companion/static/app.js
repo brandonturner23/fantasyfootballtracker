@@ -124,7 +124,7 @@ function alertItems(list) {
 /* --------------------------------------------------------------- charts */
 function baseOptions(extra = {}) {
   const grid = css("--grid"), muted = css("--muted"), ink = css("--ink-2");
-  Chart.defaults.font.family = "Inter, system-ui, sans-serif";
+  Chart.defaults.font.family = css("--font") || "Inter, system-ui, sans-serif";
   return {
     responsive: true, maintainAspectRatio: false, animation: false,
     interaction: { mode: "index", intersect: false },
@@ -338,5 +338,29 @@ $("#testNotifyBtn").onclick = async () => {
 };
 $("#leagueSelect").onchange = async (e) => { await api("/api/league", { method: "POST", body: JSON.stringify({ league_key: e.target.value }) }); WEEK = null; load(true); };
 $("#logoutBtn").onclick = async () => { await api("/api/auth/logout", { method: "POST" }); location.reload(); };
+/* ---------------------------------------------------------------- styles */
+const STYLE_FONTS = {
+  turf: "Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700",
+  primetime: "Oswald:wght@500;600;700",
+  scoreboard: "JetBrains+Mono:wght@400;500;700",
+  aurora: "Plus+Jakarta+Sans:wght@400;500;600;700;800",
+};
+function setStyle(name, save = true) {
+  name = name || "midnight";
+  document.documentElement.setAttribute("data-style", name);
+  $("#styleSelect").value = name;
+  const fam = STYLE_FONTS[name];
+  if (fam && !document.querySelector(`link[data-font="${name}"]`)) {
+    const l = document.createElement("link");
+    l.rel = "stylesheet"; l.dataset.font = name;
+    l.href = `https://fonts.googleapis.com/css2?family=${fam}&display=swap`;
+    l.onload = () => DATA && render();
+    document.head.appendChild(l);
+  }
+  if (save) { try { localStorage.setItem("style", name); } catch (_) {} }
+  if (DATA) render();
+}
+$("#styleSelect").onchange = (e) => setStyle(e.target.value);
+setStyle(document.documentElement.getAttribute("data-style"), false);
 try { const t = localStorage.getItem("tab"); if (t) showTab(t); } catch (_) {}
 boot();
