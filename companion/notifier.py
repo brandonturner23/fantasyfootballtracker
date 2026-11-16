@@ -55,7 +55,7 @@ class Notifier:
 
     def _email(self, title, message, priority, url):
         msg = EmailMessage()
-        msg["Subject"] = f"[Fantasy] {title}"
+        msg["Subject"] = f"[Gridiron Griddle] {title}"
         msg["From"] = self.s.email_from or self.s.smtp_user
         msg["To"] = self.s.email_to
         msg.set_content(message + (f"\n\n{url}" if url else ""))

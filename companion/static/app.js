@@ -1,4 +1,4 @@
-/* Fantasy Companion dashboard. Vanilla JS + Chart.js. */
+/* Gridiron Griddle dashboard. Vanilla JS + Chart.js. */
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -85,6 +85,7 @@ async function load(refresh = false) {
 function render() {
   const d = DATA;
   $("#leagueName").textContent = `${d.my_team.name} · ${d.league.name}`;
+  document.title = `Gridiron Griddle · ${d.my_team.name}`;
   const sel = $("#weekSelect");
   const last = Math.max(d.league.end_week || 17, d.league.current_week || d.week);
   sel.innerHTML = Array.from({ length: last - (d.league.start_week || 1) + 1 }, (_, i) => i + (d.league.start_week || 1))
@@ -346,7 +347,7 @@ const STYLE_FONTS = {
   aurora: "Plus+Jakarta+Sans:wght@400;500;600;700;800",
 };
 function setStyle(name, save = true) {
-  name = name || "midnight";
+  name = name || "turf";
   document.documentElement.setAttribute("data-style", name);
   $("#styleSelect").value = name;
   const fam = STYLE_FONTS[name];

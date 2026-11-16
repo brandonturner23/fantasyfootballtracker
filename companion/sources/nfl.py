@@ -22,7 +22,7 @@ class SleeperEspnSource:
     def __init__(self, db: DB, session: requests.Session | None = None):
         self.db = db
         self.http = session or requests.Session()
-        self.http.headers.setdefault("User-Agent", "fantasy-companion/0.1")
+        self.http.headers.setdefault("User-Agent", "gridiron-griddle/0.1")
 
     def _get(self, url: str, params: Any = None, ttl: float | None = 3600) -> Any:
         key = f"nfl:{url}?{params}"

@@ -1,4 +1,8 @@
-# 🏈 Fantasy Football Companion for Yahoo
+<img src="companion/static/logo.svg" width="64" alt="">
+
+# Gridiron Griddle
+
+*A fantasy football companion for Yahoo leagues.*
 
 A self-hosted assistant for your Yahoo Fantasy Football team. It connects to your league,
 does the weekly research for you, tells you how to set your lineup around NFL schedules,
@@ -37,8 +41,8 @@ You can also link to one directly with `?style=<name>`.
 
 | Style | Feel |
 |---|---|
-| `midnight` (default) | Navy glass with blue-violet gradients |
-| `turf` | Stadium green, yard-line background, condensed sports type |
+| `turf` (default) | Stadium green, yard-line background, condensed sports type |
+| `midnight` | Navy glass with blue-violet gradients |
 | `primetime` | TV broadcast: navy with red/gold, bold uppercase Oswald headings, square edges |
 | `scoreboard` | Retro amber LED, monospace numbers with glow |
 | `aurora` | Frosted glass cards over vivid cyan/violet/pink light |

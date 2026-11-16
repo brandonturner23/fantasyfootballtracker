@@ -121,7 +121,7 @@ def dispatch(db, notifier: Notifier, dashboard_url: str | None = None) -> list[d
         db.mark_sent([a["id"] for a in pending])  # nothing to send to; keep them on the dashboard only
         return pending
     top = min(a["priority"] for a in pending)
-    title = pending[0]["title"] if len(pending) == 1 else f"{len(pending)} fantasy updates: {pending[0]['title']}"
+    title = pending[0]["title"] if len(pending) == 1 else f"Gridiron Griddle: {len(pending)} updates, {pending[0]['title']}"
     body = "\n\n".join(f"• {a['title']}\n{a['message']}" for a in pending)
     notifier.send(title, body, top, dashboard_url)
     db.mark_sent([a["id"] for a in pending])

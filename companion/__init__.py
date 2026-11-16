@@ -1,2 +1,2 @@
-"""Fantasy football companion for Yahoo Fantasy leagues."""
+"""Gridiron Griddle: a fantasy football companion for Yahoo Fantasy leagues."""
 __version__ = "0.1.0"

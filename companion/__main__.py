@@ -14,7 +14,7 @@ import sys
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(prog="companion", description="Yahoo fantasy football companion")
+    parser = argparse.ArgumentParser(prog="companion", description="Gridiron Griddle: Yahoo fantasy football companion")
     sub = parser.add_subparsers(dest="cmd", required=True)
     s = sub.add_parser("serve", help="run the dashboard + background monitor")
     s.add_argument("--host", default="127.0.0.1")
@@ -53,7 +53,7 @@ def main(argv: list[str] | None = None) -> int:
         from .monitor import run_check
         print(json.dumps(run_check(state.companion, settings, state.notifier), indent=2))
     elif args.cmd == "test-notify":
-        print(state.notifier.send("Fantasy companion test", "Notifications are working!", 3) or "No channels configured")
+        print(state.notifier.send("Gridiron Griddle test", "Notifications are working!", 3) or "No channels configured")
     elif args.cmd == "lineup":
         dash = state.companion.dashboard(args.week)
         lu = dash["lineup"]

@@ -76,7 +76,7 @@ def create_app(settings: Settings | None = None, db: DB | None = None, start_mon
         if "thread" in monitor:
             monitor["thread"].stop_event.set()
 
-    app = FastAPI(title="Fantasy Football Companion", lifespan=lifespan)
+    app = FastAPI(title="Gridiron Griddle", lifespan=lifespan)
     app.state.companion = state
     app.mount("/static", StaticFiles(directory=STATIC), name="static")
 
@@ -200,7 +200,7 @@ def create_app(settings: Settings | None = None, db: DB | None = None, start_mon
     def notify_test():
         if not state.notifier.channels:
             raise HTTPException(400, "No notification channels configured in .env")
-        return state.notifier.send("Fantasy companion test", "Notifications are working! 🏈", 3)
+        return state.notifier.send("Gridiron Griddle test", "Notifications are working!", 3)
 
     @app.get("/api/watchlist")
     def watchlist():
