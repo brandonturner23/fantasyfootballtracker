@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="en" data-theme="dark" data-style="turf">
+<html lang="en" data-theme="dark" data-style="primetime">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gridiron Griddle</title>
 <link rel="icon" type="image/svg+xml" href="/static/logo.svg">
-<meta name="theme-color" content="#06100a">
+<meta name="theme-color" content="#060918">
 <meta name="color-scheme" content="dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/style.css">
 <link rel="stylesheet" href="/static/themes.css">
 <script>
@@ -17,7 +17,7 @@
   (function () {
     var s = new URLSearchParams(location.search).get("style");
     try { s = s || localStorage.getItem("style"); } catch (e) {}
-    document.documentElement.setAttribute("data-style", s || "turf");
+    document.documentElement.setAttribute("data-style", s || "primetime");
   })();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -27,8 +27,8 @@
   <div class="brand"><span class="logo"><svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 50C14 29 29 14 50 14C50 35 35 50 14 50Z"/><path d="M22 34L30 42M28 28L36 36M34 22L42 30"/></g></svg></span><div class="brand-text"><span class="wordmark">Gridiron Griddle</span><span id="leagueName"></span></div></div>
   <div class="controls">
     <label class="week"><span class="lbl">Style</span> <select id="styleSelect" aria-label="App style">
-      <option value="turf">Turf</option><option value="midnight">Midnight</option>
-      <option value="primetime">Primetime</option><option value="scoreboard">Scoreboard</option>
+      <option value="primetime">Primetime</option><option value="turf">Turf</option>
+      <option value="midnight">Midnight</option><option value="scoreboard">Scoreboard</option>
       <option value="aurora">Aurora</option><option value="stealth">Stealth</option>
     </select></label>
     <label class="week"><span class="lbl">Week</span> <select id="weekSelect"></select></label>

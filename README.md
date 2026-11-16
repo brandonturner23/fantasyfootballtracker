@@ -41,9 +41,9 @@ You can also link to one directly with `?style=<name>`.
 
 | Style | Feel |
 |---|---|
-| `turf` (default) | Stadium green, yard-line background, condensed sports type |
+| `primetime` (default) | TV broadcast: navy with red/gold, bold uppercase Oswald headings, square edges |
+| `turf` | Stadium green, yard-line background, condensed sports type |
 | `midnight` | Navy glass with blue-violet gradients |
-| `primetime` | TV broadcast: navy with red/gold, bold uppercase Oswald headings, square edges |
 | `scoreboard` | Retro amber LED, monospace numbers with glow |
 | `aurora` | Frosted glass cards over vivid cyan/violet/pink light |
 | `stealth` | Pure black and white minimal |

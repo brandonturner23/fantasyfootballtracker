@@ -347,7 +347,7 @@ const STYLE_FONTS = {
   aurora: "Plus+Jakarta+Sans:wght@400;500;600;700;800",
 };
 function setStyle(name, save = true) {
-  name = name || "turf";
+  name = name || "primetime";
   document.documentElement.setAttribute("data-style", name);
   $("#styleSelect").value = name;
   const fam = STYLE_FONTS[name];

@@ -1,4 +1,4 @@
-/* App styles. Each overrides the tokens in style.css. Turf is the default (set in index.html).
+/* App styles. Each overrides the tokens in style.css. Primetime is the default (set in index.html).
    Chart series colors stay on the validated dark categorical palette in every style. */
 
 /* ---------------------------------------------------------------- Turf */
@@ -50,7 +50,8 @@
 :root[data-style="primetime"] .tabs { border-radius: 4px; padding: 0; gap: 0; }
 :root[data-style="primetime"] .tabs button { border-radius: 0; font-family: var(--font-head); text-transform: uppercase; letter-spacing: .06em; padding: 11px 18px; }
 :root[data-style="primetime"] .tabs button.active { background: var(--accent); box-shadow: none; }
-:root[data-style="primetime"] .logo { background: var(--accent); border-radius: 4px; transform: skewX(-8deg); }
+:root[data-style="primetime"] .logo { background: var(--accent-grad); border-radius: 6px; box-shadow: 0 6px 18px -6px rgba(229, 72, 77, 0.8); }
+:root[data-style="primetime"] .wordmark { font-size: 21px; letter-spacing: 0.05em; }
 
 /* ----------------------------------------------------------- Scoreboard */
 :root[data-style="scoreboard"] {
