@@ -1,37 +1,37 @@
-/* Permanent dark theme. Series colors are the validated dark-mode categorical steps. */
+/* Gridiron Griddle: dark "primetime broadcast" theme. Series colors are the validated dark-mode categorical steps. */
 :root {
   color-scheme: dark;
-  --page: #0a0c12;
-  --surface: #12151d;
-  --surface-2: #1a1e29;
-  --surface-3: #222736;
-  --ink: #f2f4f8;
-  --ink-2: #b4bac8;
-  --muted: #7c8396;
-  --grid: #232836;
-  --axis: #343a4b;
-  --border: rgba(255, 255, 255, 0.07);
-  --border-strong: rgba(255, 255, 255, 0.14);
-  --accent: #3987e5;
-  --accent-2: #9085e9;
-  --accent-grad: linear-gradient(135deg, #3987e5 0%, #9085e9 100%);
+  --page: #060918;
+  --surface: #0d1230;
+  --surface-2: #141a40;
+  --surface-3: #1c2453;
+  --ink: #ffffff;
+  --ink-2: #c3c8e6;
+  --muted: #7e86b3;
+  --grid: #1b2250;
+  --axis: #2c356b;
+  --border: rgba(160, 175, 255, 0.10);
+  --border-strong: rgba(160, 175, 255, 0.2);
+  --accent: #e5484d;
+  --accent-2: #f5b82e;
+  --accent-grad: linear-gradient(135deg, #e5484d 0%, #f07a3a 100%);
   --accent-ink: #ffffff;
   --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
   --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
   --good: #0ca30c; --good-text: #2fd35a; --warning: #fab219; --serious: #ec835a; --critical: #e5484d;
-  --radius: 16px;
-  --radius-sm: 10px;
+  --radius: 6px;
+  --radius-sm: 4px;
   --font: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-head: var(--font);
-  --head-transform: none;
-  --head-spacing: -0.01em;
-  --value-weight: 800;
-  --header-bg: rgba(10, 12, 18, 0.72);
+  --font-head: Oswald, Inter, sans-serif;
+  --head-transform: uppercase;
+  --head-spacing: 0.05em;
+  --value-weight: 600;
+  --header-bg: linear-gradient(90deg, rgba(13, 18, 48, 0.95), rgba(40, 14, 40, 0.95));
   --page-bg:
-    radial-gradient(1100px 520px at 8% -10%, rgba(57, 135, 229, 0.16), transparent 60%),
-    radial-gradient(900px 480px at 100% 0%, rgba(144, 133, 233, 0.12), transparent 60%),
+    linear-gradient(115deg, rgba(229, 72, 77, 0.10) 0 22%, transparent 22.1%),
+    radial-gradient(1000px 500px at 100% 0%, rgba(245, 184, 46, 0.08), transparent 60%),
     var(--page);
-  --card-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 40%), var(--surface);
+  --card-bg: var(--surface);
   --glow: none;
   --shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 12px 32px -16px rgba(0, 0, 0, 0.6);
 }
@@ -295,3 +295,16 @@ dialog .close { float: right; background: var(--surface-2); color: var(--ink-2);
   .timeline .slotrow { grid-template-columns: 92px 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before { animation: none !important; transition: none !important; } }
+
+/* ---------- broadcast details ---------- */
+.topbar { border-bottom: 3px solid var(--accent); }
+.tile { border-left: 4px solid var(--accent); }
+.tile:nth-child(2n) { border-left-color: var(--accent-2); }
+.tile::before { display: none; }
+.tile .value { font-size: 36px; }
+.card h2 { border-left: 3px solid var(--accent); padding-left: 10px; font-size: 16px; }
+.tabs { border-radius: 4px; padding: 0; gap: 0; }
+.tabs button { border-radius: 0; font-family: var(--font-head); text-transform: uppercase; letter-spacing: .06em; padding: 11px 18px; }
+.tabs button.active { background: var(--accent); box-shadow: none; }
+.logo { border-radius: 6px; box-shadow: 0 6px 18px -6px rgba(229, 72, 77, 0.8); }
+.wordmark { font-size: 21px; letter-spacing: 0.05em; }

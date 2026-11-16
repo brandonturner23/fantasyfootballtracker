@@ -34,22 +34,6 @@ python -m companion serve
 Open http://localhost:8000. With no Yahoo keys set, the app runs on a made-up demo league so you can
 look around.
 
-## App styles
-
-Pick a look from the **Style** menu in the header. Your choice is remembered in that browser.
-You can also link to one directly with `?style=<name>`.
-
-| Style | Feel |
-|---|---|
-| `primetime` (default) | TV broadcast: navy with red/gold, bold uppercase Oswald headings, square edges |
-| `turf` | Stadium green, yard-line background, condensed sports type |
-| `midnight` | Navy glass with blue-violet gradients |
-| `scoreboard` | Retro amber LED, monospace numbers with glow |
-| `aurora` | Frosted glass cards over vivid cyan/violet/pink light |
-| `stealth` | Pure black and white minimal |
-
-Every style is dark, and the charts use the same colorblind-checked series colors in each one.
-
 ## Connect your Yahoo league
 
 1. Go to https://developer.yahoo.com/apps/create/ and create an app:
